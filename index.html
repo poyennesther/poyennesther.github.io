@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>活動邀請函</title>
+  <style>
+    :root { --max: 980px; }
+    body{ margin:0; font-family: system-ui, -apple-system, "Noto Sans TC", sans-serif; color:#111; }
+    .snap { height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory; }
+    section{ scroll-snap-align: start; padding: 56px 18px; display:flex; align-items:center; }
+    .wrap{ width:100%; max-width: var(--max); margin:0 auto; }
+    .hero{
+      min-height:100vh;
+      background: center/cover no-repeat url("https://images.unsplash.com/photo-1523438097201-512ae7d59c54?auto=format&fit=crop&w=1600&q=70");
+      color:white; position:relative;
+    }
+    .hero::before{content:""; position:absolute; inset:0; background:rgba(0,0,0,.35);}
+    .hero .wrap{ position:relative; }
+    h1{ font-size: 44px; margin:0 0 10px; }
+    .sub{ opacity:.9; line-height:1.6; }
+    .grid{ display:grid; gap:18px; grid-template-columns: 1.2fr .8fr; }
+    .card{ background:#fff; border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.08); }
+    .photo{ width:100%; border-radius:16px; object-fit:cover; aspect-ratio: 4/3; }
+    .count{ display:flex; gap:12px; flex-wrap:wrap; }
+    .pill{ background:#f3f4f6; border-radius:999px; padding:10px 14px; font-weight:600; }
+    .map iframe{ width:100%; height:320px; border:0; border-radius:16px; }
+    .cta{
+      position: fixed; right:16px; bottom:16px;
+      background:#111; color:#fff; text-decoration:none;
+      padding:12px 16px; border-radius:999px; box-shadow:0 12px 28px rgba(0,0,0,.22);
+      font-weight:700;
+    }
+    @media (max-width: 820px){
+      h1{ font-size:34px; }
+      .grid{ grid-template-columns: 1fr; }
+      section{ padding: 44px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="cta" href="https://docs.google.com/forms/d/e/你的表單ID/viewform" target="_blank" rel="noreferrer">
+  填寫出席表單
+</a>
+
+<div class="snap" id="snap">
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Jack & Alice</h1>
+      <div class="sub">
+        誠摯邀請你參加我們的婚禮<br/>
+        2026/05/30（六） 18:00<br/>
+        台北｜某某飯店
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 圖文編排 -->
+  <section>
+    <div class="wrap grid">
+      <div class="card">
+        <h2 style="margin:0 0 10px;">活動資訊</h2>
+        <div style="line-height:1.8;">
+          <b>日期</b>：2026/05/30（六）<br/>
+          <b>時間</b>：18:00 入席 / 18:30 開席<br/>
+          <b>地點</b>：台北某某飯店 3F 宴會廳<br/>
+          <b>Dress code</b>：半正式（建議淺色系）
+        </div>
+      </div>
+      <img class="photo" alt="photo" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=70"/>
+    </div>
+  </section>
+
+  <!-- 3. 倒數 -->
+  <section>
+    <div class="wrap">
+      <h2 style="margin:0 0 12px;">倒數計時</h2>
+      <div class="count" id="count">
+        <div class="pill" id="d">天 0</div>
+        <div class="pill" id="h">時 0</div>
+        <div class="pill" id="m">分 0</div>
+        <div class="pill" id="s">秒 0</div>
+      </div>
+      <div style="margin-top:12px; opacity:.7;" id="countMsg"></div>
+    </div>
+  </section>
+
+  <!-- 4. 地圖 -->
+  <section>
+    <div class="wrap map">
+      <h2 style="margin:0 0 12px;">地點導航</h2>
+      <!-- 到 Google Maps 找到地點 → 分享 → 嵌入地圖 → 複製 iframe -->
+      <iframe
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Taipei%20101&output=embed">
+      </iframe>
+      <div style="margin-top:10px; opacity:.75;">
+        建議提早 10–15 分鐘抵達，附近有停車場與捷運站。
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CTA 區塊（非必要，因為已經有浮動按鈕） -->
+  <section>
+    <div class="wrap card">
+      <h2 style="margin:0 0 10px;">回覆出席</h2>
+      <div style="line-height:1.8; margin-bottom:12px;">
+        請協助在 2026/05/01 前填寫表單，以利座位與餐點安排。
+      </div>
+      <a href="https://docs.google.com/forms/d/e/你的表單ID/viewform" target="_blank" rel="noreferrer"
+         style="display:inline-block;background:#111;color:#fff;text-decoration:none;padding:12px 16px;border-radius:12px;font-weight:700;">
+        前往 Google 表單
+      </a>
+    </div>
+  </section>
+</div>
+
+<script>
+  // (可選) 自動下滾：每 8 秒滑到下一段；使用者滾動/觸控後停止
+  const snap = document.getElementById("snap");
+  let auto = true;
+  let t = setInterval(() => {
+    if (!auto) return;
+    const sections = [...snap.querySelectorAll("section")];
+    const y = snap.scrollTop;
+    const idx = Math.round(y / window.innerHeight);
+    const next = Math.min(idx + 1, sections.length - 1);
+    snap.scrollTo({ top: next * window.innerHeight, behavior: "smooth" });
+  }, 8000);
+
+  ["wheel","touchstart","keydown"].forEach(evt=>{
+    window.addEventListener(evt, () => { auto = false; }, { passive:true });
+  });
+
+  // 倒數計時
+  const target = new Date("2026-05-30T18:00:00+08:00").getTime();
+  const el = {
+    d: document.getElementById("d"),
+    h: document.getElementById("h"),
+    m: document.getElementById("m"),
+    s: document.getElementById("s"),
+    msg: document.getElementById("countMsg")
+  };
+
+  function tick(){
+    const now = Date.now();
+    let diff = target - now;
+    if (diff <= 0){
+      el.msg.textContent = "活動已開始 / 或已結束，謝謝你！";
+      el.d.textContent = "天 0"; el.h.textContent = "時 0"; el.m.textContent = "分 0"; el.s.textContent = "秒 0";
+      return;
+    }
+    const sec = Math.floor(diff / 1000);
+    const days = Math.floor(sec / 86400);
+    const hrs  = Math.floor((sec % 86400) / 3600);
+    const mins = Math.floor((sec % 3600) / 60);
+    const s    = sec % 60;
+    el.d.textContent = `天 ${days}`;
+    el.h.textContent = `時 ${hrs}`;
+    el.m.textContent = `分 ${mins}`;
+    el.s.textContent = `秒 ${s}`;
+    el.msg.textContent = "期待與你相見！";
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>

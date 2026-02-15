@@ -2,866 +2,227 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>柏言 & 允盈的婚禮邀請</title>
-
-  <meta name="description" content="誠摯邀請您參與我們的婚禮，見證我們的幸福時刻。2026.04.18 @ Chalet V" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="柏言 & 允盈 Wedding Invitation" />
-  <meta property="og:description" content="2026.04.18 (六) 中午 12:00 誠摯邀請" />
-  <meta property="og:image" content="assets/影像_1.jpg" />
-  <meta property="og:url" content="https://你的網址.com" />
-
-  <style>
-    :root{
-      --bg:#0f0f10;
-      --card:#151518;
-      --text:#f3f3f4;
-      --muted:#b9b9bf;
-      --line:rgba(255,255,255,.12);
-      --shadow: 0 20px 60px -10px rgba(0,0,0,.6);
-      --radius: 24px;
-      --max: 980px;
-      --gold: #d4af37;
-      --ok: #37d48a;
-      --warn:#ffce5c;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-      color:var(--text);
-      background: radial-gradient(1200px 800px at 20% -10%, rgba(255,255,255,.08), transparent 55%),
-                  radial-gradient(900px 700px at 110% 10%, rgba(255,255,255,.06), transparent 60%),
-                  var(--bg);
-      overflow-x:hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 88px;}
-    .topbar{
-      position:sticky; top:0; z-index:100;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(15,15,16,.75);
-      border-bottom: 1px solid var(--line);
-    }
-    .topbar .wrap{padding:14px 18px; display:flex; align-items:center; justify-content:space-between;}
-    .brand{display:flex; flex-direction:column; gap:2px;}
-    .brand h1{font-size:15px; font-weight:800; letter-spacing:.08em; margin:0; opacity:.95;}
-    .brand small{font-size:12px; color:rgba(255,255,255,.65); letter-spacing:.08em;}
-    .actions{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
-
-    .btn{
-      appearance:none; border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      padding:8px 14px;
-      border-radius:999px;
-      cursor:pointer;
-      font-size:13px; font-weight:600;
-      transition: all .2s ease;
-      display:inline-flex; gap:8px; align-items:center; justify-content:center;
-      user-select:none;
-    }
-    .btn:hover{transform:translateY(-1px); background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3);}
-    .btn:active{transform:translateY(0px); opacity:.85}
-    .btn.primary{
-      background: var(--text);
-      color: #000;
-      border-color: var(--text);
-      font-weight: 800;
-    }
-    .btn.primary:hover{background:#e2e2e2;}
-    .btn.ghost{background:transparent;}
-    .btn.small{padding:7px 10px; font-size:12px;}
-    .badge{
-      display:inline-flex; align-items:center; gap:6px;
-      font-size:12px; letter-spacing:.08em;
-      padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(212,175,55,.35);
-      background: rgba(0,0,0,.25);
-      color: rgba(255,255,255,.86);
-      backdrop-filter: blur(6px);
-    }
-    .dot{
-      width:8px; height:8px; border-radius:50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 4px rgba(212,175,55,.12);
-      flex-shrink:0;
-    }
-
-    .hero{
-      margin-top:18px;
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.10);
-      position:relative;
-      min-height: 72vh;
-      background:#111;
-      isolation:isolate;
-    }
-    .hero::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(to top, rgba(15,15,16,1) 0%, rgba(15,15,16,.42) 44%, rgba(15,15,16,0) 100%);
-      pointer-events:none;
-      z-index:1;
-    }
-    .hero-media{
-      position:absolute; inset:0;
-      transform: scale(1.02);
-      transition: transform 10s ease;
-      z-index:0;
-    }
-    .hero:hover .hero-media{ transform: scale(1.08); }
-    .hero-media img{
-      width:100%; height:100%;
-      object-fit:cover; display:block;
-      filter:saturate(1.05) contrast(1.02);
-    }
-    .hero .content{
-      position:absolute; left:0; right:0; bottom:0;
-      padding: 34px 24px 26px;
-      display:flex; flex-direction:column; gap:14px;
-      z-index:2;
-      align-items:flex-start;
-    }
-    .kicker{
-      font-size:12px; letter-spacing:.22em; font-weight:800;
-      text-transform:uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(212, 175, 55, 0.30);
-      padding: 6px 10px; border-radius: 999px;
-      background: rgba(0,0,0,.28);
-      backdrop-filter: blur(6px);
-    }
-    .title{
-      font-size: clamp(34px, 6vw, 68px);
-      line-height:1.03; margin:0;
-      letter-spacing:-.02em; font-weight:900;
-      text-shadow: 0 10px 30px rgba(0,0,0,.80);
-    }
-    .subtitle{
-      margin:0;
-      color: rgba(255,255,255,.82);
-      max-width: 54ch;
-      line-height:1.7;
-      font-size: 16px;
-      text-shadow: 0 2px 10px rgba(0,0,0,.75);
-    }
-    .hero-actions{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;}
-    .scroll-hint{
-      position:absolute; left:50%; bottom:12px; transform:translateX(-50%);
-      display:flex; align-items:center; gap:8px;
-      font-size:12px; letter-spacing:.12em;
-      color: rgba(255,255,255,.75);
-      z-index:3;
-      opacity:.92;
-      pointer-events:none;
-    }
-    .chev{
-      width:22px; height:22px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.22);
-      display:grid; place-items:center;
-      background: rgba(0,0,0,.18);
-      animation: bob 1.6s ease-in-out infinite;
-    }
-    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-
-    .grid{
-      margin-top: 18px;
-      display:grid; grid-template-columns: 1.2fr .8fr; gap:16px;
-    }
-    @media (max-width: 860px){
-      .grid{grid-template-columns:1fr}
-      .hero{min-height: 62vh}
-      .actions{gap:6px}
-    }
-
-    .card{
-      background: rgba(30,30,35,.40);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      backdrop-filter: blur(10px);
-    }
-    .card h2{
-      margin: 0 0 16px; font-size: 18px;
-      letter-spacing:.06em; color:var(--text);
-      display:flex; align-items:center; gap:10px;
-    }
-    .card h2::before{
-      content:""; display:block; width:4px; height:18px;
-      background: var(--gold); border-radius:4px;
-    }
-    .invite-text{
-      font-size: 16px; line-height: 1.9;
-      color: rgba(255,255,255,.85); white-space: pre-line;
-    }
-
-    /* 倒數計時_1 */
-    .countdown{
-      display:grid; grid-template-columns: repeat(4, 1fr); gap:8px;
-      margin-top: 12px;
-    }
-    .pill{
-      border-radius: 18px;
-      background: rgba(255,255,255,.03);
-      padding: 14px 6px; text-align:center;
-      border:1px solid rgba(255,255,255,.06);
-    }
-    .num{
-      font-size: 24px; font-weight: 900; font-variant-numeric: tabular-nums;
-      background: -webkit-linear-gradient(90deg, #fff, #bbb);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .lab{
-      font-size: 10px; color: var(--muted);
-      letter-spacing:.12em; margin-top: 4px; font-weight:800;
-    }
-
-    .timeline{display:flex; flex-direction:column; gap:12px;}
-    .titem{
-      display:flex; gap:14px; align-items:flex-start;
-      padding: 14px; border-radius: 20px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid transparent;
-      transition: border-color .3s, transform .2s;
-    }
-    .titem:hover{ border-color: rgba(255,255,255,.12); transform: translateY(-1px); }
-    .tdot{
-      width:12px; height:12px; border-radius:50%;
-      background: var(--text);
-      box-shadow: 0 0 0 4px rgba(255,255,255,.10);
-      margin-top:4px;
-      flex-shrink:0;
-    }
-    .when{font-size: 13px; font-weight:900; color: var(--gold); margin-bottom:4px; letter-spacing:.06em;}
-    .what{font-size: 15px; font-weight:650; color: rgba(255,255,255,.9); line-height:1.6;}
-    .note{font-size:12px; color: rgba(255,255,255,.65); margin-top:2px; line-height:1.6;}
-
-    .meta{display:grid; gap:12px; margin-top: 16px;}
-    .row{
-      background: rgba(255,255,255,.03);
-      border-radius: 18px; padding: 14px;
-      font-size: 14px; line-height:1.7; color: rgba(255,255,255,.82);
-      border:1px solid rgba(255,255,255,.06);
-    }
-    .row strong { display:block; color:#fff; margin-bottom:4px; letter-spacing:.06em; }
-    .split{display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
-    @media (max-width: 560px){ .split{grid-template-columns:1fr} }
-
-    .map-container{
-      margin-top: 14px; border-radius: 18px; overflow:hidden;
-      border:1px solid var(--line); background:#222;
-      aspect-ratio: 16/10; position:relative;
-    }
-    .map-container iframe{width:100%; height:100%; border:0; display:block;}
-    .map-cover{
-      position:absolute; inset:auto 12px 12px 12px;
-      display:flex; gap:10px; flex-wrap:wrap;
-      z-index:2;
-    }
-
-    /* Gallery */
-    .gallery{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:10px;
-    }
-    .g{
-      position:relative;
-      border-radius: 18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      min-height: 120px;
-      cursor: zoom-in;
-    }
-    .g img{width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.02); transition:transform .5s ease;}
-    .g:hover img{transform:scale(1.08)}
-    .g1{grid-column: span 7; min-height: 220px;}
-    .g2{grid-column: span 5; min-height: 220px;}
-    .g3,.g4{grid-column: span 6; min-height: 200px;}
-    @media (max-width: 860px){
-      .g1,.g2,.g3,.g4{grid-column: span 12;}
-    }
-
-    /* Lightbox */
-    .lightbox{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.78);
-      display:none;
-      align-items:center; justify-content:center;
-      z-index:999;
-      padding: 18px;
-    }
-    .lightbox.show{display:flex;}
-    .lightbox .inner{
-      max-width: min(980px, 96vw);
-      max-height: 86vh;
-      border-radius: 18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow: 0 30px 90px rgba(0,0,0,.6);
-      position:relative;
-      background:#111;
-    }
-    .lightbox img{display:block; width:100%; height:auto; max-height:86vh; object-fit:contain; background:#111;}
-    .lightbox .close{
-      position:absolute; top:10px; right:10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.35);
-      color:#fff;
-      padding: 8px 10px;
-      cursor:pointer;
-      font-weight:800;
-    }
-
-    /* Calendar visual (月曆_1) */
-    .calendar-visual{
-      display:flex; gap:14px; align-items:center;
-      padding: 14px;
-      border-radius: 20px;
-      background: rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.06);
-    }
-    .calendar-visual img{
-      width:72px; height:72px; border-radius:16px;
-      object-fit:cover;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.02);
-      flex-shrink:0;
-    }
-    .calendar-visual .big{
-      font-size:16px; font-weight:900; letter-spacing:.06em;
-      margin:0 0 6px;
-    }
-    .calendar-visual .sub{
-      font-size:13px; color: rgba(255,255,255,.72);
-      line-height:1.6; margin:0;
-    }
-
-    /* Toast */
-    .toast{
-      position:fixed;
-      left:50%; bottom:18px; transform:translateX(-50%);
-      background: rgba(20,20,24,.72);
-      border:1px solid rgba(255,255,255,.16);
-      backdrop-filter: blur(10px);
-      color:rgba(255,255,255,.92);
-      padding: 10px 14px;
-      border-radius:999px;
-      font-size:13px;
-      letter-spacing:.02em;
-      box-shadow: 0 20px 60px rgba(0,0,0,.5);
-      display:none;
-      z-index:1000;
-    }
-    .toast.show{display:block; animation: pop .25s ease;}
-    @keyframes pop{from{transform:translateX(-50%) translateY(8px); opacity:0}to{transform:translateX(-50%) translateY(0); opacity:1}}
-
-    .footer{
-      margin-top: 40px; text-align:center;
-      color: var(--muted); font-size: 12px; letter-spacing:.12em;
-      opacity: .7;
-    }
-
-    /* reveal */
-    .fade{ opacity:0; transform: translateY(16px); transition: all .8s cubic-bezier(0.2, 0.8, 0.2, 1); }
-    .fade.show{ opacity:1; transform: translateY(0px); }
-
-    /* Floating music indicator */
-    .spin{
-      display:inline-block;
-      width:10px; height:10px; border-radius:50%;
-      background: rgba(255,255,255,.9);
-      box-shadow: 0 0 0 4px rgba(255,255,255,.12);
-      opacity:.9;
-    }
-    .spin.on{
-      background: var(--ok);
-      box-shadow: 0 0 0 4px rgba(55,212,138,.15);
-      animation: pulse 1.3s ease-in-out infinite;
-    }
-    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111111" />
+  <title>Our Day</title>
+  <meta name="description" content="Responsive GitHub Pages template with countdown + BGM + gallery + form button." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="wrap">
+  <!-- Fixed top bar: countdown + BGM -->
+  <header class="topbar" role="banner">
+    <div class="topbar__inner">
       <div class="brand">
-        <h1>BERNARD & YUNYING</h1>
-        <small>Wedding Invitation · 2026.04.18</small>
+        <div class="brand__title">Our Day</div>
+        <div class="brand__sub">Save the date</div>
       </div>
 
-      <div class="actions">
-        <button class="btn small" id="copyBtn" type="button" title="複製邀請函連結">🔗 複製連結</button>
+      <div class="countdown" aria-live="polite">
+        <div class="countdown__label">倒數</div>
+        <div class="countdown__value" id="countdownValue">-- 天 --:--:--</div>
+      </div>
 
-        <button class="btn" id="musicBtn" type="button" title="背景音樂（音樂播放_1）">
-          <span class="spin" id="musicDot" aria-hidden="true"></span>
-          <span id="musicIcon">▶</span>
-          <span id="musicText">Music</span>
+      <div class="player">
+        <audio id="bgm" preload="auto" loop>
+          <!-- 你把 bgm 放到這裡 -->
+          <source src="assets/audio/bgm.mp3" type="audio/mpeg" />
+        </audio>
+
+        <button class="btn btn--ghost" id="btnPlay" type="button" aria-label="Play background music">
+          ▶︎ 播放
+        </button>
+        <button class="btn btn--ghost" id="btnMute" type="button" aria-label="Mute background music">
+          🔊 音量
         </button>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="wrap">
-    <!-- Hero / KV（影像_1） -->
-    <section class="hero fade" id="top">
-      <div class="hero-media">
-        <img id="heroImg"
-             src="assets/影像_1.jpg"
-             alt="Wedding Photo"
-             onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop'"/>
-      </div>
+  <main class="page">
+    <!-- Hero -->
+    <section class="hero" aria-label="Hero section">
+      <div class="hero__bg"></div>
+      <div class="hero__content">
+        <div class="pill">Wedding / Event</div>
+        <h1 class="hero__title">Po-Han & Partner</h1>
+        <p class="hero__desc">
+          這是一個手機優先的 github.io 單頁網站模板：相簿、資訊、倒數、BGM、表單連結一次到位。
+        </p>
 
-      <div class="content">
-        <div class="badge"><span class="dot"></span><span>Wedding Invitation</span></div>
-        <h2 class="title">柏言 & 允盈</h2>
-        <p class="subtitle">我們要結婚了！很開心邀請你來見證我們的婚禮。<br>Much love.</p>
-
-        <div class="hero-actions">
-          <button class="btn primary" id="rsvpBtn">填寫出席意願</button>
-          <button class="btn" id="scrollInfo">查看詳細資訊</button>
-          <button class="btn ghost" id="addCalBtn">加入行事曆</button>
-        </div>
-      </div>
-
-      <div class="scroll-hint" aria-hidden="true">
-        <span class="chev">⌄</span> <span>往下滑</span>
-      </div>
-    </section>
-
-    <!-- Info + Countdown -->
-    <section class="grid" id="info">
-      <div class="card fade">
-        <h2>致親愛的你們</h2>
-        <div class="invite-text">
-會收到此邀請函的你們，都是我們人生中某個時刻重要的人。
-
-這一天，不僅是我們的婚禮，也是與大家相聚的好日子。
-期待在微風與陽光下，與你們分享這份喜悅。
-        </div>
-
-        <div style="margin-top:16px" class="calendar-visual" title="月曆視覺（月曆_1）">
-          <img id="calendarImg"
-               src="assets/月曆_1.png"
-               alt="月曆_1"
-               onerror="this.src='https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop'"/>
-          <div>
-            <p class="big">2026 / 04 / 18（六）</p>
-            <p class="sub">午宴 12:00 · Chalet V<br>（可在下方查看地點 / 導航）</p>
+        <div class="hero__meta">
+          <div class="metaCard">
+            <div class="metaCard__k">日期</div>
+            <div class="metaCard__v" id="eventDateText">2026/03/15 (Sun)</div>
+          </div>
+          <div class="metaCard">
+            <div class="metaCard__k">地點</div>
+            <div class="metaCard__v">Taipei</div>
+          </div>
+          <div class="metaCard">
+            <div class="metaCard__k">Dress code</div>
+            <div class="metaCard__v">Smart casual</div>
           </div>
         </div>
-      </div>
 
-      <div class="card fade" id="倒數計時_1">
-        <h2>倒數計時</h2>
-        <div style="font-size:13px; color:var(--muted); margin-bottom:8px;">
-          距離 2026/4/18 午宴還有：
-        </div>
-
-        <div class="countdown" aria-label="countdown">
-          <div class="pill"><div class="num" id="dd">00</div><div class="lab">DAYS</div></div>
-          <div class="pill"><div class="num" id="hh">00</div><div class="lab">HRS</div></div>
-          <div class="pill"><div class="num" id="mm">00</div><div class="lab">MIN</div></div>
-          <div class="pill"><div class="num" id="ss">00</div><div class="lab">SEC</div></div>
-        </div>
-
-        <div style="margin-top:14px; font-size:12px; color:rgba(255,255,255,.68); line-height:1.6;">
-          小提醒：手機瀏覽器通常需要「點一下播放」才能開始背景音樂（系統限制）。
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#rsvp">前往填寫表單</a>
+          <a class="btn btn--soft" href="#gallery">看照片</a>
         </div>
       </div>
     </section>
 
-    <!-- Timeline -->
-    <section class="card fade" style="margin-top:16px">
-      <h2>當日流程</h2>
+    <!-- Content grid -->
+    <section class="grid">
+      <!-- Story -->
+      <article class="card" id="story">
+        <h2 class="h2">About</h2>
+        <p class="p">
+          放一段簡短介紹：我們的故事、活動說明、想傳達的話。這裡文字長一點也沒問題，排版會自動換行。
+        </p>
+        <div class="chips">
+          <span class="chip">#歡迎蒞臨</span>
+          <span class="chip">#一起吃飯</span>
+          <span class="chip">#一起拍照</span>
+        </div>
+      </article>
 
-      <div class="timeline">
-        <div class="titem">
-          <div class="tdot"></div>
-          <div>
-            <div class="when">10:30 AM</div>
-            <div class="what">賓客入場 & 證婚儀式</div>
-            <div class="note">請預留停車/報到時間，謝謝你們的到來。</div>
+      <!-- Schedule -->
+      <article class="card" id="schedule">
+        <h2 class="h2">Schedule</h2>
+        <ol class="timeline">
+          <li class="timeline__item">
+            <div class="timeline__time">16:30</div>
+            <div class="timeline__content">
+              <div class="timeline__title">入場 / 報到</div>
+              <div class="timeline__desc">來簽到、拿小物、拍照。</div>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__time">17:00</div>
+            <div class="timeline__content">
+              <div class="timeline__title">儀式</div>
+              <div class="timeline__desc">簡短溫馨的段落。</div>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__time">18:00</div>
+            <div class="timeline__content">
+              <div class="timeline__title">晚宴 / 餐敘</div>
+              <div class="timeline__desc">用餐、聊天、合照。</div>
+            </div>
+          </li>
+          <li class="timeline__item">
+            <div class="timeline__time">20:30</div>
+            <div class="timeline__content">
+              <div class="timeline__title">送客</div>
+              <div class="timeline__desc">謝謝你們來！</div>
+            </div>
+          </li>
+        </ol>
+      </article>
+
+      <!-- Location -->
+      <article class="card" id="location">
+        <h2 class="h2">Location</h2>
+        <p class="p">你可以放地址、交通方式、停車資訊。</p>
+
+        <div class="infoList">
+          <div class="infoRow">
+            <div class="infoRow__k">Address</div>
+            <div class="infoRow__v">台北市某某路 123 號</div>
+          </div>
+          <div class="infoRow">
+            <div class="infoRow__k">MRT</div>
+            <div class="infoRow__v">某某站 2 號出口步行 5 分鐘</div>
+          </div>
+          <div class="infoRow">
+            <div class="infoRow__k">Parking</div>
+            <div class="infoRow__v">旁邊停車場 / 特約</div>
           </div>
         </div>
 
-        <div class="titem">
-          <div class="tdot"></div>
-          <div>
-            <div class="when">12:00 PM</div>
-            <div class="what">午宴開始 (Lunch Reception)</div>
-            <div class="note">一起吃飯、拍照、聊天、把這天過得很值得！</div>
-          </div>
-        </div>
-
-        <div class="titem">
-          <div class="tdot"></div>
-          <div>
-            <div class="when">02:30 PM</div>
-            <div class="what">合影 & 送客</div>
-            <div class="note">如果你趕時間，也可以先來打聲招呼～</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Location -->
-    <section class="card fade" style="margin-top:16px" id="location">
-      <h2>時間 & 地點</h2>
-
-      <div class="meta">
-        <div class="split">
-          <div class="row">
-            <strong>日期</strong>
-            2026/04/18（六）
-          </div>
-          <div class="row">
-            <strong>時間</strong>
-            午宴 12:00（建議 11:30 前抵達）
-          </div>
-        </div>
-
-        <div class="row">
-          <strong>地點</strong>
-          Chalet V（請在此替換為完整地址）<br>
-          台北市 XX 區 XX 路 XX 號（示意）
-        </div>
-
-        <div class="map-container">
-          <!-- 把下面 src 換成你要的 Google Map embed -->
+        <!-- Optional: Google Map embed -->
+        <div class="map">
+          <!-- 你可以把 iframe 換成自己的地點 -->
           <iframe
-            title="Google Map"
+            title="Map"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=Taipei%20101&output=embed"></iframe>
-
-          <div class="map-cover">
-            <button class="btn small" id="openMapBtn" type="button">🧭 開啟導航</button>
-            <button class="btn small" id="copyAddrBtn" type="button">📍 複製地址</button>
-          </div>
+            src="https://www.google.com/maps?q=Taipei&output=embed">
+          </iframe>
         </div>
-      </div>
+      </article>
+
+      <!-- FAQ -->
+      <article class="card" id="faq">
+        <h2 class="h2">FAQ</h2>
+        <details class="qa" open>
+          <summary>可以帶家人朋友嗎？</summary>
+          <p>請依照表單填寫人數，我們會做座位與餐點安排。</p>
+        </details>
+        <details class="qa">
+          <summary>可以拍照錄影嗎？</summary>
+          <p>可以！也歡迎分享給我們。</p>
+        </details>
+        <details class="qa">
+          <summary>有素食或過敏需求？</summary>
+          <p>請在表單備註，我們會協助安排。</p>
+        </details>
+      </article>
     </section>
 
-    <!-- Gallery（影像_2~影像_5） -->
-    <section class="card fade" style="margin-top:16px" id="gallery">
-      <h2>相簿</h2>
-      <div style="font-size:13px; color:rgba(255,255,255,.7); margin:-6px 0 14px; line-height:1.6;">
-        點擊照片可放大。把你的外部素材放到 <code>assets/影像_2~影像_5</code> 直接覆蓋即可。
+    <!-- Gallery -->
+    <section class="gallery" id="gallery" aria-label="Photo gallery">
+      <div class="sectionHead">
+        <h2 class="h2">Gallery</h2>
+        <p class="p muted">圖片檔名示範：img_1, img_2... 你放到 assets/images/ 後就會自動顯示。</p>
       </div>
 
-      <div class="gallery">
-        <div class="g g1" data-img="assets/影像_2.jpg" title="影像_2">
-          <img src="assets/影像_2.jpg" alt="影像_2"
-               onerror="this.src='https://images.unsplash.com/photo-1529636798458-92182e662485?q=80&w=1600&auto=format&fit=crop'">
-        </div>
-        <div class="g g2" data-img="assets/影像_3.jpg" title="影像_3">
-          <img src="assets/影像_3.jpg" alt="影像_3"
-               onerror="this.src='https://images.unsplash.com/photo-1529634597503-139d3726fed5?q=80&w=1600&auto=format&fit=crop'">
-        </div>
-        <div class="g g3" data-img="assets/影像_4.jpg" title="影像_4">
-          <img src="assets/影像_4.jpg" alt="影像_4"
-               onerror="this.src='https://images.unsplash.com/photo-1523438097201-f0f1788bc60a?q=80&w=1600&auto=format&fit=crop'">
-        </div>
-        <div class="g g4" data-img="assets/影像_5.jpg" title="影像_5">
-          <img src="assets/影像_5.jpg" alt="影像_5"
-               onerror="this.src='https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?q=80&w=1600&auto=format&fit=crop'">
-        </div>
+      <div class="galleryGrid">
+        <figure class="ph">
+          <img class="ph__img" id="img_1" alt="img_1" loading="lazy" />
+        </figure>
+        <figure class="ph">
+          <img class="ph__img" id="img_2" alt="img_2" loading="lazy" />
+        </figure>
+        <figure class="ph">
+          <img class="ph__img" id="img_3" alt="img_3" loading="lazy" />
+        </figure>
+        <figure class="ph">
+          <img class="ph__img" id="img_4" alt="img_4" loading="lazy" />
+        </figure>
+        <figure class="ph">
+          <img class="ph__img" id="img_5" alt="img_5" loading="lazy" />
+        </figure>
+        <figure class="ph">
+          <img class="ph__img" id="img_6" alt="img_6" loading="lazy" />
+        </figure>
       </div>
     </section>
 
     <!-- RSVP -->
-    <section class="card fade" style="margin-top:16px" id="rsvp">
-      <h2>出席回覆</h2>
+    <section class="rsvp" id="rsvp" aria-label="RSVP section">
+      <div class="rsvp__inner">
+        <h2 class="h2">RSVP</h2>
+        <p class="p">請點下方按鈕填寫 Google 表單。</p>
 
-      <div class="row" style="margin-top:-2px">
-        <strong>RSVP 連結</strong>
-        建議用 Google Form / Typeform / 自家表單。你只要把下方 <code>RSVP_URL</code> 換掉即可。
-      </div>
+        <a class="btn btn--primary btn--large" id="rsvpBtn" href="#" target="_blank" rel="noopener">
+          前往 Google 表單
+        </a>
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-        <button class="btn primary" id="rsvpBtn2" type="button">立即回覆出席</button>
-        <button class="btn" id="contactBtn" type="button">聯絡新人</button>
-      </div>
-
-      <div style="margin-top:14px; font-size:12px; color:rgba(255,255,255,.68); line-height:1.7;">
-        如有飲食禁忌 / 需要兒童座椅 / 其他協助，請在表單備註欄留下，我們會盡快確認。
+        <p class="small muted">
+          提醒：iOS/Chrome 對自動播放音樂有限制，需要你先點一次「播放」才會開始。
+        </p>
       </div>
     </section>
 
-    <div class="footer fade">
-      WITH LOVE · SEE YOU SOON
-    </div>
-  </div>
+    <footer class="footer">
+      <div>© <span id="yearNow"></span> Our Day</div>
+      <div class="muted">Built for GitHub Pages</div>
+    </footer>
+  </main>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="inner">
-      <button class="close" id="lbClose" type="button" aria-label="close">✕</button>
-      <img id="lbImg" alt="preview">
-    </div>
-  </div>
-
-  <!-- Background Music（音樂播放_1） -->
-  <audio id="bgm" preload="auto" loop>
-    <source src="assets/音樂播放_1.mp3" type="audio/mpeg" />
-  </audio>
-
-  <div class="toast" id="toast">已複製</div>
-
-  <script>
-    /**
-     * ==========================
-     * 可集中修改的設定區
-     * ==========================
-     * 外部素材命名（你要求的）
-     *  - 影像_1：首屏 KV
-     *  - 影像_2~影像_5：相簿
-     *  - 月曆_1：月曆/日期視覺
-     *  - 音樂播放_1：背景音樂
-     *  - 倒數計時_1：倒數計時容器 id
-     */
-    const CONFIG = {
-      // 婚禮時間（含時區；台灣可用 +08:00）
-      EVENT_TIME_ISO: "2026-04-18T12:00:00+08:00",
-
-      // RSVP 表單連結（自行替換）
-      RSVP_URL: "https://example.com/rsvp",
-
-      // 新人聯絡（自行替換）
-      CONTACT_URL: "https://example.com/contact",
-      CONTACT_TEXT_FALLBACK: "請把這段換成你的聯絡方式（例如 LINE ID / 電話）",
-
-      // 地址（複製用）
-      ADDRESS_TEXT: "Chalet V（請替換完整地址）｜台北市 XX 區 XX 路 XX 號",
-
-      // 導航（可放 Google Maps 導航連結）
-      MAP_URL: "https://www.google.com/maps?q=Taipei%20101",
-
-      // 素材路徑（對應你的命名）
-      ASSETS: {
-        HERO: "assets/影像_1.jpg",
-        CALENDAR: "assets/月曆_1.png",
-        MUSIC: "assets/音樂播放_1.mp3",
-        GALLERY: [
-          "assets/影像_2.jpg",
-          "assets/影像_3.jpg",
-          "assets/影像_4.jpg",
-          "assets/影像_5.jpg",
-        ],
-      },
-    };
-
-    // ===== Small helpers =====
-    const $ = (sel) => document.querySelector(sel);
-    const $$ = (sel) => Array.from(document.querySelectorAll(sel));
-    const pad2 = (n) => String(n).padStart(2, "0");
-
-    function toast(msg){
-      const t = $("#toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(()=>t.classList.remove("show"), 1400);
-    }
-
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        toast("已複製");
-      }catch(e){
-        // fallback
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-        toast("已複製（fallback）");
-      }
-    }
-
-    // ===== Reveal on scroll =====
-    const io = new IntersectionObserver((entries)=>{
-      for(const e of entries){
-        if(e.isIntersecting) e.target.classList.add("show");
-      }
-    }, { threshold: 0.12 });
-    $$(".fade").forEach(el=>io.observe(el));
-
-    // ===== Smooth scroll buttons =====
-    $("#scrollInfo").addEventListener("click", ()=>{
-      $("#info").scrollIntoView({ behavior:"smooth", block:"start" });
-    });
-
-    // ===== Copy link =====
-    $("#copyBtn").addEventListener("click", ()=>{
-      copyText(location.href);
-    });
-
-    // ===== Map actions =====
-    $("#openMapBtn").addEventListener("click", ()=>{
-      window.open(CONFIG.MAP_URL, "_blank", "noopener,noreferrer");
-    });
-    $("#copyAddrBtn").addEventListener("click", ()=>{
-      copyText(CONFIG.ADDRESS_TEXT);
-    });
-
-    // ===== RSVP buttons =====
-    function openRSVP(){
-      window.open(CONFIG.RSVP_URL, "_blank", "noopener,noreferrer");
-    }
-    $("#rsvpBtn").addEventListener("click", openRSVP);
-    $("#rsvpBtn2").addEventListener("click", openRSVP);
-
-    $("#contactBtn").addEventListener("click", ()=>{
-      if(CONFIG.CONTACT_URL && CONFIG.CONTACT_URL.startsWith("http")){
-        window.open(CONFIG.CONTACT_URL, "_blank", "noopener,noreferrer");
-      }else{
-        copyText(CONFIG.CONTACT_TEXT_FALLBACK);
-      }
-    });
-
-    // ===== Background music =====
-    const bgm = $("#bgm");
-    const musicBtn = $("#musicBtn");
-    const musicIcon = $("#musicIcon");
-    const musicText = $("#musicText");
-    const musicDot = $("#musicDot");
-
-    // 確保 source 使用你的命名
-    bgm.querySelector("source").src = CONFIG.ASSETS.MUSIC;
-    bgm.load();
-
-    let isPlaying = false;
-
-    async function toggleMusic(){
-      try{
-        if(!isPlaying){
-          await bgm.play();
-          isPlaying = true;
-          musicIcon.textContent = "❚❚";
-          musicText.textContent = "Playing";
-          musicDot.classList.add("on");
-          toast("音樂播放");
-        }else{
-          bgm.pause();
-          isPlaying = false;
-          musicIcon.textContent = "▶";
-          musicText.textContent = "Music";
-          musicDot.classList.remove("on");
-          toast("音樂暫停");
-        }
-      }catch(e){
-        toast("瀏覽器限制：請再點一次播放");
-      }
-    }
-    musicBtn.addEventListener("click", toggleMusic);
-
-    // ===== Countdown（倒數計時_1） =====
-    const eventTime = new Date(CONFIG.EVENT_TIME_ISO).getTime();
-
-    function tick(){
-      const now = Date.now();
-      let diff = Math.max(0, eventTime - now);
-
-      const s = Math.floor(diff / 1000);
-      const days = Math.floor(s / 86400);
-      const hrs  = Math.floor((s % 86400) / 3600);
-      const mins = Math.floor((s % 3600) / 60);
-      const secs = s % 60;
-
-      $("#dd").textContent = pad2(days);
-      $("#hh").textContent = pad2(hrs);
-      $("#mm").textContent = pad2(mins);
-      $("#ss").textContent = pad2(secs);
-
-      // 到點後提示
-      if(diff === 0){
-        $("#倒數計時_1").querySelector("div[style*='距離']")?.remove?.();
-      }
-    }
-    tick();
-    setInterval(tick, 1000);
-
-    // ===== Add to Calendar（產生 .ics，免外掛） =====
-    function downloadICS(){
-      const dt = new Date(CONFIG.EVENT_TIME_ISO);
-      // ICS 用 UTC
-      const dtUtc = new Date(dt.getTime() - dt.getTimezoneOffset()*60000);
-      const y = dtUtc.getUTCFullYear();
-      const mo = pad2(dtUtc.getUTCMonth()+1);
-      const d  = pad2(dtUtc.getUTCDate());
-      const h  = pad2(dtUtc.getUTCHours());
-      const mi = pad2(dtUtc.getUTCMinutes());
-      const se = pad2(dtUtc.getUTCSeconds());
-      const dtstamp = `${y}${mo}${d}T${h}${mi}${se}Z`;
-
-      const ics =
-`BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Wedding Invite//EN
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
-BEGIN:VEVENT
-UID:${Date.now()}@github.io
-DTSTAMP:${dtstamp}
-DTSTART:${dtstamp}
-DURATION:PT3H
-SUMMARY:柏言 & 允盈 婚禮午宴
-LOCATION:${CONFIG.ADDRESS_TEXT}
-DESCRIPTION:誠摯邀請您參與我們的婚禮！RSVP：${CONFIG.RSVP_URL}
-END:VEVENT
-END:VCALENDAR`;
-
-      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "wedding-invitation.ics";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      toast("已下載行事曆");
-    }
-    $("#addCalBtn").addEventListener("click", downloadICS);
-
-    // ===== Lightbox for gallery =====
-    const lb = $("#lightbox");
-    const lbImg = $("#lbImg");
-    const lbClose = $("#lbClose");
-
-    $$(".g").forEach(el=>{
-      el.addEventListener("click", ()=>{
-        const src = el.getAttribute("data-img");
-        lbImg.src = src;
-        lb.classList.add("show");
-        lb.setAttribute("aria-hidden", "false");
-      });
-    });
-    function closeLB(){
-      lb.classList.remove("show");
-      lb.setAttribute("aria-hidden", "true");
-      lbImg.src = "";
-    }
-    lbClose.addEventListener("click", closeLB);
-    lb.addEventListener("click", (e)=>{
-      if(e.target === lb) closeLB();
-    });
-    document.addEventListener("keydown", (e)=>{
-      if(e.key === "Escape") closeLB();
-    });
-  </script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

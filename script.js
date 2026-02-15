@@ -1,35 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 設定婚禮日期：2026年4月18日
-    const weddingDate = new Date('2026-04-18T00:00:00').getTime();
+    // 1. 設定婚禮日期：2026年4月18日 上午 10:00:00
+    const weddingDate = new Date('2026-04-18T10:00:00').getTime();
 
     function updateCountdown() {
         const now = new Date().getTime();
         const distance = weddingDate - now;
 
         if (distance < 0) {
-            // 婚禮已過的處理
             document.querySelector(".big-countdown").innerHTML = "We are Married!";
-            document.querySelector(".sticky-footer").style.display = "none";
+            // 隱藏底部 RSVP 區塊 (可選)
+            // document.querySelector(".sticky-footer").style.display = "none";
             return;
         }
 
+        // 計算天、時、分、秒
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // 更新頁面中間的大倒數
+        // 更新頁面中間的大倒數 (包含秒)
         const bigDays = document.getElementById("big-days");
         if(bigDays) {
             document.getElementById("big-days").innerText = String(days).padStart(2, '0');
             document.getElementById("big-hours").innerText = String(hours).padStart(2, '0');
             document.getElementById("big-mins").innerText = String(minutes).padStart(2, '0');
-        }
-
-        // 更新底部小倒數
-        const footerDays = document.getElementById("footer-days");
-        if(footerDays) {
-            document.getElementById("footer-days").innerText = String(days).padStart(2, '0');
-            document.getElementById("footer-hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("big-secs").innerText = String(seconds).padStart(2, '0');
         }
     }
 
@@ -42,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('bgMusic');
     let isPlaying = false;
 
-    // 點擊頁面任意處嘗試播放（解決自動播放限制）
     document.body.addEventListener('click', () => {
         if (!isPlaying) {
             audio.play().catch(() => {});

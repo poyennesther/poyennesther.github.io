@@ -1,228 +1,110 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#111111" />
-  <title>Our Day</title>
-  <meta name="description" content="Responsive GitHub Pages template with countdown + BGM + gallery + form button." />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黃柏言 & 廖允盈 Wedding Invitation</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Noto+Serif+TC:wght@300;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <!-- Fixed top bar: countdown + BGM -->
-  <header class="topbar" role="banner">
-    <div class="topbar__inner">
-      <div class="brand">
-        <div class="brand__title">Our Day</div>
-        <div class="brand__sub">Save the date</div>
-      </div>
 
-      <div class="countdown" aria-live="polite">
-        <div class="countdown__label">倒數</div>
-        <div class="countdown__value" id="countdownValue">-- 天 --:--:--</div>
-      </div>
-
-      <div class="player">
-        <audio id="bgm" preload="auto" loop>
-          <!-- 你把 bgm 放到這裡 -->
-          <source src="assets/audio/bgm.mp3" type="audio/mpeg" />
-        </audio>
-
-        <button class="btn btn--ghost" id="btnPlay" type="button" aria-label="Play background music">
-          ▶︎ 播放
-        </button>
-        <button class="btn btn--ghost" id="btnMute" type="button" aria-label="Mute background music">
-          🔊 音量
-        </button>
-      </div>
+    <div class="music-control" id="musicToggle">
+        <i class="fas fa-music"></i>
+        <div class="music-waves">
+            <span></span><span></span><span></span>
+        </div>
     </div>
-  </header>
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        您的瀏覽器不支援音樂播放。
+    </audio>
 
-  <main class="page">
-    <!-- Hero -->
-    <section class="hero" aria-label="Hero section">
-      <div class="hero__bg"></div>
-      <div class="hero__content">
-        <div class="pill">Wedding / Event</div>
-        <h1 class="hero__title">Po-Han & Partner</h1>
-        <p class="hero__desc">
-          這是一個手機優先的 github.io 單頁網站模板：相簿、資訊、倒數、BGM、表單連結一次到位。
-        </p>
-
-        <div class="hero__meta">
-          <div class="metaCard">
-            <div class="metaCard__k">日期</div>
-            <div class="metaCard__v" id="eventDateText">2026/03/15 (Sun)</div>
-          </div>
-          <div class="metaCard">
-            <div class="metaCard__k">地點</div>
-            <div class="metaCard__v">Taipei</div>
-          </div>
-          <div class="metaCard">
-            <div class="metaCard__k">Dress code</div>
-            <div class="metaCard__v">Smart casual</div>
-          </div>
-        </div>
-
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="#rsvp">前往填寫表單</a>
-          <a class="btn btn--soft" href="#gallery">看照片</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Content grid -->
-    <section class="grid">
-      <!-- Story -->
-      <article class="card" id="story">
-        <h2 class="h2">About</h2>
-        <p class="p">
-          放一段簡短介紹：我們的故事、活動說明、想傳達的話。這裡文字長一點也沒問題，排版會自動換行。
-        </p>
-        <div class="chips">
-          <span class="chip">#歡迎蒞臨</span>
-          <span class="chip">#一起吃飯</span>
-          <span class="chip">#一起拍照</span>
-        </div>
-      </article>
-
-      <!-- Schedule -->
-      <article class="card" id="schedule">
-        <h2 class="h2">Schedule</h2>
-        <ol class="timeline">
-          <li class="timeline__item">
-            <div class="timeline__time">16:30</div>
-            <div class="timeline__content">
-              <div class="timeline__title">入場 / 報到</div>
-              <div class="timeline__desc">來簽到、拿小物、拍照。</div>
+    <div class="container">
+        <header class="hero fade-in">
+            <p class="subtitle">婚禮邀請函</p>
+            <h1 class="eng-title">WEDDING INVITATION</h1>
+            
+            <div class="hero-image-wrapper">
+                <img src="images/img_0.jpg" alt="Wedding Couple" class="main-photo">
             </div>
-          </li>
-          <li class="timeline__item">
-            <div class="timeline__time">17:00</div>
-            <div class="timeline__content">
-              <div class="timeline__title">儀式</div>
-              <div class="timeline__desc">簡短溫馨的段落。</div>
-            </div>
-          </li>
-          <li class="timeline__item">
-            <div class="timeline__time">18:00</div>
-            <div class="timeline__content">
-              <div class="timeline__title">晚宴 / 餐敘</div>
-              <div class="timeline__desc">用餐、聊天、合照。</div>
-            </div>
-          </li>
-          <li class="timeline__item">
-            <div class="timeline__time">20:30</div>
-            <div class="timeline__content">
-              <div class="timeline__title">送客</div>
-              <div class="timeline__desc">謝謝你們來！</div>
-            </div>
-          </li>
-        </ol>
-      </article>
 
-      <!-- Location -->
-      <article class="card" id="location">
-        <h2 class="h2">Location</h2>
-        <p class="p">你可以放地址、交通方式、停車資訊。</p>
+            <p class="invite-text">誠摯邀請你的到來</p>
+            <h2 class="script-title">Wedding</h2>
+            <div class="names">
+                <span>黃柏言</span> <span class="amp">&</span> <span>廖允盈</span>
+            </div>
+        </header>
 
-        <div class="infoList">
-          <div class="infoRow">
-            <div class="infoRow__k">Address</div>
-            <div class="infoRow__v">台北市某某路 123 號</div>
-          </div>
-          <div class="infoRow">
-            <div class="infoRow__k">MRT</div>
-            <div class="infoRow__v">某某站 2 號出口步行 5 分鐘</div>
-          </div>
-          <div class="infoRow">
-            <div class="infoRow__k">Parking</div>
-            <div class="infoRow__v">旁邊停車場 / 特約</div>
-          </div>
+        <section class="quote-section fade-in">
+            <div class="quote-content">
+                <p class="eng-quote">"You are the best thing<br>I never planned."</p>
+                <p class="chn-quote">你是我生命中最美的意外</p>
+            </div>
+            <div class="photo-grid">
+                <img src="images/img_1.jpg" alt="Running Together" class="grid-photo p1">
+            </div>
+        </section>
+
+        <section class="story-section fade-in">
+            <div class="story-text">
+                <h3>Hi, We got married.</h3>
+                <p>想收藏無數個瞬間 ——</p>
+                <p>火車鳴笛的遠去，<br>閃電劃破天際的明亮，<br>日出與日落的溫柔。</p>
+                <p>還有每一次見到你，<br>心口忽然一顫的怦然。</p>
+            </div>
+            <div class="collage">
+                <img src="images/img_2.jpg" alt="Life Moment" class="collage-photo c1">
+                <img src="images/img_3.jpg" alt="Formal Photo" class="collage-photo c2">
+            </div>
+        </section>
+
+        <section class="info-section fade-in">
+            <div class="info-card">
+                <p class="info-intro">時光正好，盼您如約而至。<br>親愛的家人與朋友們 ——<br>婚禮雖短，情意長存。</p>
+                
+                <div class="wedding-details">
+                    <div class="detail-item">
+                        <i class="far fa-calendar-alt"></i>
+                        <p>2026年4月18日 (六)</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Chalet V</p>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.5351858512367!2d121.5524802748337!3d25.083738736287955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ad7e7479d027%3A0x5b6a14ae3fb2e3dc!2zQ0hBTEVUIFYg4pSCIOWKoOmWiyAyLzIxKOWFrSnjgIEyLzIyKOaXpSnjgIEyLzI3KOS6lCkg6YCx5pyr54ef5qWt!5e0!3m2!1szh-TW!2stw!4v1771148144907!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <a href="https://goo.gl/maps/PLACEHOLDER" target="_blank" class="map-btn">
+                        <i class="fas fa-location-arrow"></i> 開啟導航
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="spacer"></div>
+    </div>
+
+    <div class="sticky-footer">
+        <div class="countdown-mini">
+            <span>距離婚禮還有</span>
+            <div id="timer" class="timer-display">
+                <span id="days">00</span>天 
+                <span id="hours">00</span>時
+            </div>
         </div>
-
-        <!-- Optional: Google Map embed -->
-        <div class="map">
-          <!-- 你可以把 iframe 換成自己的地點 -->
-          <iframe
-            title="Map"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=Taipei&output=embed">
-          </iframe>
-        </div>
-      </article>
-
-      <!-- FAQ -->
-      <article class="card" id="faq">
-        <h2 class="h2">FAQ</h2>
-        <details class="qa" open>
-          <summary>可以帶家人朋友嗎？</summary>
-          <p>請依照表單填寫人數，我們會做座位與餐點安排。</p>
-        </details>
-        <details class="qa">
-          <summary>可以拍照錄影嗎？</summary>
-          <p>可以！也歡迎分享給我們。</p>
-        </details>
-        <details class="qa">
-          <summary>有素食或過敏需求？</summary>
-          <p>請在表單備註，我們會協助安排。</p>
-        </details>
-      </article>
-    </section>
-
-    <!-- Gallery -->
-    <section class="gallery" id="gallery" aria-label="Photo gallery">
-      <div class="sectionHead">
-        <h2 class="h2">Gallery</h2>
-        <p class="p muted">圖片檔名示範：img_1, img_2... 你放到 assets/images/ 後就會自動顯示。</p>
-      </div>
-
-      <div class="galleryGrid">
-        <figure class="ph">
-          <img class="ph__img" id="img_1" alt="img_1" loading="lazy" />
-        </figure>
-        <figure class="ph">
-          <img class="ph__img" id="img_2" alt="img_2" loading="lazy" />
-        </figure>
-        <figure class="ph">
-          <img class="ph__img" id="img_3" alt="img_3" loading="lazy" />
-        </figure>
-        <figure class="ph">
-          <img class="ph__img" id="img_4" alt="img_4" loading="lazy" />
-        </figure>
-        <figure class="ph">
-          <img class="ph__img" id="img_5" alt="img_5" loading="lazy" />
-        </figure>
-        <figure class="ph">
-          <img class="ph__img" id="img_6" alt="img_6" loading="lazy" />
-        </figure>
-      </div>
-    </section>
-
-    <!-- RSVP -->
-    <section class="rsvp" id="rsvp" aria-label="RSVP section">
-      <div class="rsvp__inner">
-        <h2 class="h2">RSVP</h2>
-        <p class="p">請點下方按鈕填寫 Google 表單。</p>
-
-        <a class="btn btn--primary btn--large" id="rsvpBtn" href="#" target="_blank" rel="noopener">
-          前往 Google 表單
+        <a href="https://forms.gle/YOUR_GOOGLE_FORM_ID" target="_blank" class="rsvp-btn">
+            出席回覆 <i class="fas fa-arrow-right"></i>
         </a>
+    </div>
 
-        <p class="small muted">
-          提醒：iOS/Chrome 對自動播放音樂有限制，需要你先點一次「播放」才會開始。
-        </p>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div>© <span id="yearNow"></span> Our Day</div>
-      <div class="muted">Built for GitHub Pages</div>
-    </footer>
-  </main>
-
-  <script src="assets/js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

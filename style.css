@@ -1,0 +1,269 @@
+:root {
+    --bg-color: #f9f7f2; /* 奶油白 */
+    --text-primary: #2c2c2c;
+    --text-secondary: #666;
+    --accent-color: #a83f39; /* 復古紅/酒紅 */
+    --font-serif: 'Noto Serif TC', serif;
+    --font-eng: 'Cinzel', serif;
+    --font-script: 'Great Vibes', cursive;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-serif);
+    line-height: 1.8;
+    overflow-x: hidden;
+    padding-bottom: 80px; /* 留給底部固定欄的空間 */
+}
+
+/* --- 音樂按鈕 --- */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.music-control.playing {
+    animation: spin 4s linear infinite;
+    background: var(--accent-color);
+    color: white;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* --- 容器與佈局 --- */
+.container {
+    max-width: 600px; /* 手機版預設寬度 */
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.03);
+    min-height: 100vh;
+}
+
+/* --- 響應式：電腦版優化 --- */
+@media (min-width: 768px) {
+    .container {
+        max-width: 1000px; /* 電腦版加寬 */
+        padding: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+    }
+
+    /* 電腦版：Hero 佔據左側 */
+    .hero {
+        position: sticky;
+        top: 40px;
+        grid-column: 1;
+        grid-row: 1 / span 4;
+    }
+
+    /* 電腦版：其他內容在右側滾動 */
+    .quote-section, .story-section, .info-section {
+        grid-column: 2;
+    }
+}
+
+/* --- 圖片通用樣式 --- */
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    filter: sepia(10%) contrast(90%); /* 仿底片感 */
+    transition: filter 0.3s;
+}
+
+img:hover {
+    filter: sepia(0%) contrast(100%);
+}
+
+/* --- 各區塊樣式 --- */
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.eng-title {
+    font-family: var(--font-eng);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.hero-image-wrapper {
+    margin: 20px 0;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.script-title {
+    font-family: var(--font-script);
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    margin: 20px 0 10px;
+}
+
+.names {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    margin-top: 10px;
+}
+
+.quote-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.eng-quote {
+    font-family: var(--font-eng);
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+.chn-quote {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.story-section {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.story-text h3 {
+    font-family: var(--font-script);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.collage {
+    display: grid;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* --- 底部資訊卡片 --- */
+.info-card {
+    background: #fdfdfd;
+    padding: 30px 20px;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+.wedding-details {
+    margin: 30px 0;
+    font-size: 1.1rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.map-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 20px;
+    background: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* --- 底部常駐欄 --- */
+.sticky-footer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background: rgba(44, 44, 44, 0.95);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+}
+
+.countdown-mini {
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.timer-display {
+    font-family: var(--font-eng);
+    font-weight: bold;
+    font-size: 1rem;
+    color: #ffdfba;
+}
+
+.rsvp-btn {
+    background: var(--bg-color);
+    color: var(--text-primary);
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+}
+
+.rsvp-btn:hover {
+    transform: scale(1.05);
+}
+
+/* --- 動畫 --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

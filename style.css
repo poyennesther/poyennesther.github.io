@@ -1,269 +1,234 @@
 :root {
-    --bg-color: #f9f7f2; /* 奶油白 */
+    --bg-color: #f9f7f2;
     --text-primary: #2c2c2c;
     --text-secondary: #666;
-    --accent-color: #a83f39; /* 復古紅/酒紅 */
+    --accent-color: #a83f39;
     --font-serif: 'Noto Serif TC', serif;
     --font-eng: 'Cinzel', serif;
     --font-script: 'Great Vibes', cursive;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     font-family: var(--font-serif);
-    line-height: 1.8;
-    overflow-x: hidden;
-    padding-bottom: 80px; /* 留給底部固定欄的空間 */
+    line-height: 1.6;
+    padding-bottom: 90px;
 }
 
-/* --- 音樂按鈕 --- */
-.music-control {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-}
-
-.music-control.playing {
-    animation: spin 4s linear infinite;
-    background: var(--accent-color);
-    color: white;
-}
-
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
-/* --- 容器與佈局 --- */
+/* 容器與通用設定 */
 .container {
-    max-width: 600px; /* 手機版預設寬度 */
+    max-width: 800px; /* 電腦版最大寬度 */
     margin: 0 auto;
     padding: 20px;
     background: white;
     box-shadow: 0 0 20px rgba(0,0,0,0.03);
-    min-height: 100vh;
+    overflow: hidden; /* 防止內容溢出 */
 }
 
-/* --- 響應式：電腦版優化 --- */
-@media (min-width: 768px) {
-    .container {
-        max-width: 1000px; /* 電腦版加寬 */
-        padding: 40px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        align-items: start;
-    }
-
-    /* 電腦版：Hero 佔據左側 */
-    .hero {
-        position: sticky;
-        top: 40px;
-        grid-column: 1;
-        grid-row: 1 / span 4;
-    }
-
-    /* 電腦版：其他內容在右側滾動 */
-    .quote-section, .story-section, .info-section {
-        grid-column: 2;
-    }
-}
-
-/* --- 圖片通用樣式 --- */
 img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 4px;
-    filter: sepia(10%) contrast(90%); /* 仿底片感 */
-    transition: filter 0.3s;
+    border-radius: 2px;
 }
 
-img:hover {
-    filter: sepia(0%) contrast(100%);
-}
+/* 文字樣式 */
+.eng-title { font-family: var(--font-eng); font-size: 1.2rem; letter-spacing: 2px; margin: 15px 0; }
+.script-title { font-family: var(--font-script); font-size: 3rem; color: var(--accent-color); margin: 10px 0; }
+.caption { font-size: 0.9rem; color: #888; text-align: center; margin-top: 10px; font-style: italic;}
+.section-title { text-align: center; font-family: var(--font-eng); margin-bottom: 30px; font-size: 1.5rem; letter-spacing: 2px;}
 
-/* --- 各區塊樣式 --- */
-.hero {
-    text-align: center;
-    margin-bottom: 40px;
-}
+/* Hero & Photos */
+.hero { text-align: center; margin-bottom: 40px; }
+.subtitle { color: #888; letter-spacing: 3px; font-size: 0.8rem; }
+.names { font-size: 1.3rem; letter-spacing: 3px; margin-top: 10px; }
+.single-photo { margin: 20px 0; }
+.mt-20 { margin-top: 20px; }
 
-.subtitle {
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    color: var(--text-secondary);
-    margin-bottom: 5px;
-}
+/* 引用區塊 */
+.quote-section { text-align: center; margin: 40px 0; }
+.eng-quote { font-family: var(--font-eng); font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; }
 
-.eng-title {
-    font-family: var(--font-eng);
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-}
+/* 拼貼與雙圖 (img_6, img_7) */
+.story-section { text-align: center; margin: 40px 0; }
+.collage { display: grid; gap: 15px; margin-top: 20px; }
 
-.hero-image-wrapper {
-    margin: 20px 0;
-    padding: 10px;
-    background: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.script-title {
-    font-family: var(--font-script);
-    font-size: 3.5rem;
-    color: var(--accent-color);
-    margin: 20px 0 10px;
-}
-
-.names {
-    font-size: 1.2rem;
-    font-weight: 500;
-    letter-spacing: 4px;
-    margin-top: 10px;
-}
-
-.quote-section {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.eng-quote {
-    font-family: var(--font-eng);
-    font-style: italic;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: var(--text-secondary);
-}
-
-.chn-quote {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-}
-
-.story-section {
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-.story-text h3 {
-    font-family: var(--font-script);
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: var(--accent-color);
-}
-
-.collage {
+.side-by-side {
     display: grid;
-    gap: 15px;
-    margin-top: 30px;
+    grid-template-columns: 1fr 1fr; /* 1:1 等分 */
+    gap: 10px;
+    margin: 20px 0;
+}
+/* 讓並排照片高度一致並填滿 (Cover) */
+.side-by-side img {
+    height: 100%;
+    min-height: 200px; /* 手機版最小高度 */
+    object-fit: cover;
 }
 
-/* --- 底部資訊卡片 --- */
-.info-card {
-    background: #fdfdfd;
-    padding: 30px 20px;
-    border: 1px solid #eee;
-    text-align: center;
-}
-
-.wedding-details {
-    margin: 30px 0;
-    font-size: 1.1rem;
-}
-
-.detail-item {
+/* 頁面內大倒數計時 */
+.big-countdown {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
+    font-family: var(--font-eng);
+    color: var(--accent-color);
+}
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.time-box span:first-child { font-size: 2rem; font-weight: bold; line-height: 1; }
+.time-box .label { font-size: 0.7rem; color: #888; margin-top: 5px; letter-spacing: 1px; }
+.separator { font-size: 1.5rem; margin-top: -15px; }
+
+/* 時間軸 (Timeline) */
+.schedule {
+    max-width: 400px;
+    margin: 0 auto 50px;
+    position: relative;
+    padding-left: 20px;
+}
+/* 垂直線 */
+.schedule::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #ddd;
+    transform: translateX(-50%);
+}
+.event {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    background: white;
+    position: relative;
+    z-index: 1;
+}
+.event .time {
+    font-family: var(--font-eng);
+    font-weight: bold;
+    width: 45%;
+    text-align: right;
+    padding-right: 20px;
+}
+.event .activity {
+    width: 45%;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 1rem;
+}
+.event .activity span {
+    display: block;
+    font-size: 0.75rem;
+    color: #999;
+    font-family: var(--font-eng);
+}
+/* 時間軸中間的點 */
+.event::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
 }
 
+/* 地圖響應式處理 */
+.map-responsive {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 75%; /* 4:3 比例，適合地圖 */
+    height: 0;
+    border-radius: 4px;
+    margin: 20px 0;
+    background: #eee;
+}
+.map-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 .map-btn {
     display: inline-block;
-    margin-top: 10px;
-    padding: 8px 20px;
     background: #333;
     color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
     text-decoration: none;
-    border-radius: 20px;
     font-size: 0.9rem;
+    margin-top: 10px;
+    transition: 0.3s;
 }
+.map-btn:hover { background: var(--accent-color); }
 
-/* --- 底部常駐欄 --- */
+/* 底部常駐列 */
 .sticky-footer {
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    max-width: 500px;
-    background: rgba(44, 44, 44, 0.95);
+    max-width: 450px;
+    background: rgba(30, 30, 30, 0.9);
+    backdrop-filter: blur(10px);
     color: white;
-    padding: 12px 20px;
+    padding: 10px 20px;
     border-radius: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    backdrop-filter: blur(5px);
-    z-index: 999;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 100;
 }
-
-.countdown-mini {
-    font-size: 0.8rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.timer-display {
-    font-family: var(--font-eng);
-    font-weight: bold;
-    font-size: 1rem;
-    color: #ffdfba;
-}
-
+.countdown-mini { font-size: 0.75rem; color: #ccc; }
+.timer-display { font-size: 1rem; color: #fff; font-family: var(--font-eng); font-weight: bold; }
 .rsvp-btn {
-    background: var(--bg-color);
-    color: var(--text-primary);
-    padding: 8px 20px;
-    border-radius: 30px;
+    background: white;
+    color: #333;
+    padding: 8px 18px;
+    border-radius: 20px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.9rem;
-    transition: transform 0.2s;
+    font-size: 0.85rem;
 }
 
-.rsvp-btn:hover {
-    transform: scale(1.05);
+/* 音樂按鈕 */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer; z-index: 100;
 }
+.music-control.playing { background: var(--accent-color); color: white; animation: spin 4s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* --- 動畫 --- */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
+/* 淡入動畫 */
+.fade-in { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* 電腦版微調 */
+@media (min-width: 768px) {
+    .map-responsive { padding-bottom: 50%; } /* 電腦版地圖改為 2:1 */
+    .schedule::before { display: block; } /* 確保線條顯示 */
 }

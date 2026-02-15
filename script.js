@@ -1,46 +1,58 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 設置婚禮日期
+    // 設定婚禮日期：2026年4月18日
     const weddingDate = new Date('2026-04-18T00:00:00').getTime();
 
-    // 2. 倒數計時功能
     function updateCountdown() {
         const now = new Date().getTime();
         const distance = weddingDate - now;
 
         if (distance < 0) {
-            document.getElementById("timer").innerHTML = "我們結婚了！";
+            // 婚禮已過的處理
+            document.querySelector(".big-countdown").innerHTML = "We are Married!";
+            document.querySelector(".sticky-footer").style.display = "none";
             return;
         }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        // 如果需要分秒，可以自行取消註解並修改 HTML
-        // const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-        document.getElementById("days").innerText = String(days).padStart(2, '0');
-        document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+        // 更新頁面中間的大倒數
+        const bigDays = document.getElementById("big-days");
+        if(bigDays) {
+            document.getElementById("big-days").innerText = String(days).padStart(2, '0');
+            document.getElementById("big-hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("big-mins").innerText = String(minutes).padStart(2, '0');
+        }
+
+        // 更新底部小倒數
+        const footerDays = document.getElementById("footer-days");
+        if(footerDays) {
+            document.getElementById("footer-days").innerText = String(days).padStart(2, '0');
+            document.getElementById("footer-hours").innerText = String(hours).padStart(2, '0');
+        }
     }
 
+    // 每秒更新
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // 3. 音樂播放控制
+    // 音樂播放邏輯
     const musicBtn = document.getElementById('musicToggle');
     const audio = document.getElementById('bgMusic');
     let isPlaying = false;
 
-    // 嘗試自動播放 (大部分瀏覽器會阻擋，需要使用者互動)
-    document.body.addEventListener('click', function() {
+    // 點擊頁面任意處嘗試播放（解決自動播放限制）
+    document.body.addEventListener('click', () => {
         if (!isPlaying) {
-            audio.play().then(() => {
-                isPlaying = true;
-                musicBtn.classList.add('playing');
-            }).catch(e => console.log("等待使用者互動播放音樂"));
+            audio.play().catch(() => {});
+            isPlaying = true;
+            musicBtn.classList.add('playing');
         }
-    }, { once: true }); // 只觸發一次
+    }, { once: true });
 
     musicBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // 防止觸發上面的 body click
+        e.stopPropagation();
         if (isPlaying) {
             audio.pause();
             musicBtn.classList.remove('playing');
@@ -51,20 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlaying = !isPlaying;
     });
 
-    // 4. 滾動淡入效果 (Intersection Observer)
-    const observerOptions = {
-        threshold: 0.1
-    };
-
+    // 滾動動畫 Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in').forEach(section => {
-        observer.observe(section);
-    });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 });
